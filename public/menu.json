@@ -1,0 +1,117 @@
+[
+  {
+    "category": "Entradas",
+    "icon": "🥗",
+    "items": [
+      {
+        "name": "Empanadas de Queso",
+        "price": 2.50,
+        "description": "Empanadas artesanales rellenas de queso fresco, masa dorada y crujiente",
+        "image": "/empanadas.jpg",
+        "featured": true
+      },
+      {
+        "name": "Ceviche de Camarón",
+        "price": 8.00,
+        "description": "Camarones frescos marinados en limón con cebolla morada y cilantro",
+        "image": "/ceviche.jpg",
+        "featured": false
+      },
+      {
+        "name": "Patacones con Guacamole",
+        "price": 4.50,
+        "description": "Plátano verde frito acompañado de guacamole casero",
+        "image": "/patacones.jpg",
+        "featured": false
+      }
+    ]
+  },
+  {
+    "category": "Platos Fuertes",
+    "icon": "🍖",
+    "items": [
+      {
+        "name": "Seco de Pollo",
+        "price": 12.00,
+        "description": "Pollo guisado en salsa de cilantro, servido con arroz y frijoles",
+        "image": "/seco-pollo.jpg",
+        "featured": true
+      },
+      {
+        "name": "Encebollado",
+        "price": 6.50,
+        "description": "Tradicional sopa ecuatoriana con pescado albacora y yuca",
+        "image": "/encebollado.jpg",
+        "featured": true
+      },
+      {
+        "name": "Lomo Saltado",
+        "price": 14.00,
+        "description": "Tiras de lomo salteadas con cebolla, tomate y papas fritas",
+        "image": "/lomo-saltado.jpg",
+        "featured": false
+      },
+      {
+        "name": "Arroz con Mariscos",
+        "price": 16.00,
+        "description": "Arroz amarillo con mariscos frescos y vegetales",
+        "image": "/arroz-mariscos.jpg",
+        "featured": false
+      }
+    ]
+  },
+  {
+    "category": "Bebidas",
+    "icon": "🍹",
+    "items": [
+      {
+        "name": "Chicha Morada",
+        "price": 3.00,
+        "description": "Bebida tradicional de maíz morado con especias",
+        "image": "/chicha.jpg",
+        "featured": false
+      },
+      {
+        "name": "Jugo Natural",
+        "price": 2.50,
+        "description": "Jugos frescos de temporada: naranja, maracuyá, piña",
+        "image": "/jugos.jpg",
+        "featured": false
+      },
+      {
+        "name": "Café de Olla",
+        "price": 2.00,
+        "description": "Café tradicional con canela y piloncillo",
+        "image": "/cafe.jpg",
+        "featured": false
+      }
+    ]
+  },
+  {
+    "category": "Postres",
+    "icon": "🍰",
+    "items": [
+      {
+        "name": "Tres Leches",
+        "price": 4.00,
+        "description": "Clásico pastel empapado en tres tipos de leche",
+        "image": "/tres-leches.jpg",
+        "featured": true
+      },
+      {
+        "name": "Suspiro Limeño",
+        "price": 3.50,
+        "description": "Postre peruano con manjar blanco y merengue",
+        "image": "/suspiro.jpg",
+        "featured": false
+      },
+      {
+        "name": "Helado Artesanal",
+        "price": 3.00,
+        "description": "Helados caseros en sabores únicos",
+        "image": "/helado.jpg",
+        "featured": false
+      }
+    ]
+  }
+]

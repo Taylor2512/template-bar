@@ -1,0 +1,19 @@
+{
+  "restaurantName": "El Palacio del Sabor",
+  "primaryColor": "#B91C1C",
+  "secondaryColor": "#F59E0B",
+  "phoneNumber": "+593987654321",
+  "address": "Av. 6 de Diciembre y Naciones Unidas, Quito",
+  "whatsappMessage": "Hola, quiero hacer un pedido:",
+  "email": "contacto@palaciodelsabor.com",
+  "logo": "/logo.png",
+  "hero": {
+    "title": "Sabores Auténticos",
+    "subtitle": "Experiencia culinaria única desde 1985",
+    "image": "/hero-bg.jpg"
+  },
+  "social": {
+    "facebook": "https://facebook.com/palaciodelsabor",
+    "instagram": "https://instagram.com/palaciodelsabor"
+  }
+}
