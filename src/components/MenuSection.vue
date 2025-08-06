@@ -1,42 +1,72 @@
 <template>
-  <section id="menu" class="py-20 bg-gray-50">
+  <section id="menu" class="py-20 bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
+      <!-- Enhanced Section Header -->
       <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-3 mb-6">
+          <div class="w-12 h-0.5 bg-gradient-to-r from-transparent to-primary-600"></div>
+          <UtensilsCrossed class="text-primary-600" :size="32" />
+          <div class="w-12 h-0.5 bg-gradient-to-l from-transparent to-primary-600"></div>
+        </div>
+        
         <h2 class="text-4xl md:text-5xl font-playfair font-bold text-gray-800 mb-4">
           Nuestro <span class="gradient-text">Menú</span>
         </h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          Descubre sabores auténticos preparados con ingredientes frescos y recetas tradicionales
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Descubre una selección cuidadosamente curada de sabores auténticos, preparados con ingredientes frescos y mucho amor
         </p>
+        
+        <!-- Menu Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-2xl mx-auto">
+          <div class="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-2xl font-bold text-primary-600">{{ totalItems }}</div>
+            <div class="text-sm text-gray-600">Platos</div>
+          </div>
+          <div class="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-2xl font-bold text-secondary-600">{{ menu.length }}</div>
+            <div class="text-sm text-gray-600">Categorías</div>
+          </div>
+          <div class="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-2xl font-bold text-accent-600">{{ vegetarianItems }}</div>
+            <div class="text-sm text-gray-600">Vegetarianos</div>
+          </div>
+          <div class="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-2xl font-bold text-green-600">Fresh</div>
+            <div class="text-sm text-gray-600">Daily</div>
+          </div>
+        </div>
       </div>
 
-      <!-- Category Filter -->
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <!-- Enhanced Category Filter -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
         <button
           @click="selectedCategory = null"
           :class="[
-            'px-6 py-3 rounded-full font-medium transition-all duration-300',
+            'px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105',
             selectedCategory === null
-              ? 'bg-primary text-white shadow-lg'
-              : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
+              ? 'bg-primary-600 text-white shadow-lg'
+              : 'bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm hover:shadow-md'
           ]"
         >
-          Todos
+          <span class="flex items-center gap-2">
+            <span>Todos</span>
+            <span class="text-xs bg-primary-100 text-primary-700 px-2 py-1 rounded-full">{{ totalItems }}</span>
+          </span>
         </button>
         <button
           v-for="category in menu"
           :key="category.category"
           @click="selectedCategory = category.category"
           :class="[
-            'px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2',
+            'px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 flex items-center gap-2',
             selectedCategory === category.category
-              ? 'bg-primary text-white shadow-lg'
-              : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
+              ? 'bg-primary-600 text-white shadow-lg'
+              : 'bg-white text-gray-700 hover:bg-primary-50 hover:text-primary-600 shadow-sm hover:shadow-md'
           ]"
         >
-          <span>{{ category.icon }}</span>
-          {{ category.category }}
+          <span class="text-lg">{{ category.icon }}</span>
+          <span>{{ category.category }}</span>
+          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">{{ category.items.length }}</span>
         </button>
       </div>
 
@@ -111,6 +141,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { UtensilsCrossed } from 'lucide-vue-next';
 import type { MenuCategory, RestaurantConfig } from '../types';
 import MenuCard from './MenuCard.vue';
 import WhatsAppButton from './WhatsAppButton.vue';
@@ -138,4 +169,15 @@ const featuredItems = (category: MenuCategory) => {
 const regularItems = (category: MenuCategory) => {
   return category.items.filter(item => !item.featured);
 };
+
+// Enhanced computed properties
+const totalItems = computed(() => {
+  return props.menu.reduce((total, category) => total + category.items.length, 0);
+});
+
+const vegetarianItems = computed(() => {
+  return props.menu.reduce((total, category) => {
+    return total + category.items.filter(item => item.isVegetarian || item.isVegan).length;
+  }, 0);
+});
 </script>

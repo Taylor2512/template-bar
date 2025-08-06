@@ -1,19 +1,77 @@
 {
   "restaurantName": "El Palacio del Sabor",
-  "primaryColor": "#B91C1C",
+  "primaryColor": "#DC2626",
   "secondaryColor": "#F59E0B",
+  "accentColor": "#059669",
+  "textColor": "#1F2937",
+  "backgroundColor": "#FEFCF9",
   "phoneNumber": "+593987654321",
   "address": "Av. 6 de Diciembre y Naciones Unidas, Quito",
-  "whatsappMessage": "Hola, quiero hacer un pedido:",
+  "whatsappMessage": "¡Hola! Quiero hacer un pedido desde el menú digital:",
   "email": "contacto@palaciodelsabor.com",
+  "website": "www.palaciodelsabor.com",
   "logo": "/logo.png",
+  "favicon": "/favicon.ico",
+  "theme": {
+    "fontPrimary": "Playfair Display",
+    "fontSecondary": "Inter",
+    "borderRadius": "2xl",
+    "shadowIntensity": "xl",
+    "animationSpeed": "300ms"
+  },
   "hero": {
     "title": "Sabores Auténticos",
     "subtitle": "Experiencia culinaria única desde 1985",
-    "image": "/hero-bg.jpg"
+    "description": "Descubre los sabores más exquisitos de la cocina tradicional, preparados con amor y los ingredientes más frescos de la región.",
+    "backgroundImage": "/hero-bg.jpg",
+    "overlayOpacity": 0.3,
+    "ctaText": "Explorar Menú"
+  },
+  "features": [
+    {
+      "icon": "🍽️",
+      "number": "50+",
+      "text": "Platos Únicos",
+      "description": "Especialidades de la casa"
+    },
+    {
+      "icon": "⭐",
+      "number": "1985",
+      "text": "Desde",
+      "description": "Tradición familiar"
+    },
+    {
+      "icon": "🌿",
+      "number": "100%",
+      "text": "Ingredientes Frescos",
+      "description": "Calidad garantizada"
+    }
+  ],
+  "contact": {
+    "schedule": {
+      "monday": "11:00 - 22:00",
+      "tuesday": "11:00 - 22:00",
+      "wednesday": "11:00 - 22:00",
+      "thursday": "11:00 - 22:00",
+      "friday": "11:00 - 23:00",
+      "saturday": "11:00 - 23:00",
+      "sunday": "12:00 - 21:00"
+    },
+    "location": {
+      "lat": -0.1807,
+      "lng": -78.4678,
+      "googleMapsUrl": "https://maps.google.com/?q=Av.+6+de+Diciembre+y+Naciones+Unidas,+Quito"
+    }
   },
   "social": {
     "facebook": "https://facebook.com/palaciodelsabor",
-    "instagram": "https://instagram.com/palaciodelsabor"
+    "instagram": "https://instagram.com/palaciodelsabor",
+    "tiktok": "https://tiktok.com/@palaciodelsabor",
+    "youtube": "https://youtube.com/@palaciodelsabor"
+  },
+  "seo": {
+    "title": "El Palacio del Sabor - Restaurante Tradicional en Quito",
+    "description": "Disfruta de la mejor comida tradicional en Quito. Menú variado, ingredientes frescos y ambiente familiar. ¡Haz tu pedido por WhatsApp!",
+    "keywords": "restaurante quito, comida tradicional, menú digital, pedidos whatsapp"
   }
 }

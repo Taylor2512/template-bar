@@ -1,114 +1,193 @@
 <template>
   <div class="relative">
-    <!-- Cart Button -->
+    <!-- Enhanced Cart Button -->
     <button
       @click="toggleCart"
-      class="fixed bottom-6 right-6 bg-primary hover:bg-red-700 text-white rounded-full p-4 shadow-xl hover:shadow-2xl transition-all duration-300 z-50 group"
+      class="fixed bottom-6 right-6 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white rounded-full p-4 shadow-xl hover:shadow-2xl transition-all duration-300 z-50 group transform hover:scale-110"
       :class="{ 'animate-pulse': cartItemsCount > 0 }"
     >
       <ShoppingCart :size="24" />
       <span
         v-if="cartItemsCount > 0"
-        class="absolute -top-2 -right-2 bg-secondary text-white text-sm font-bold rounded-full h-6 w-6 flex items-center justify-center animate-bounce"
+        class="absolute -top-2 -right-2 bg-accent-500 text-white text-sm font-bold rounded-full h-6 w-6 flex items-center justify-center animate-bounce shadow-lg"
       >
         {{ cartItemsCount }}
       </span>
+      
+      <!-- Ripple effect -->
+      <div 
+        v-if="cartItemsCount > 0"
+        class="absolute inset-0 rounded-full bg-primary-300 animate-ping opacity-20"
+      ></div>
     </button>
 
-    <!-- Cart Sidebar -->
+    <!-- Enhanced Cart Sidebar -->
     <Transition name="slide-right">
       <div
         v-if="isCartOpen"
         class="fixed inset-0 z-50 overflow-hidden"
         @click="closeCart"
       >
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-lg transition-all duration-300"></div>
         
         <div
-          class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl"
+          class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col"
           @click.stop
         >
-          <!-- Header -->
-          <div class="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 class="text-2xl font-bold text-gray-800">Mi Pedido</h2>
+          <!-- Enhanced Header -->
+          <div class="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-primary-50 to-secondary-50">
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-primary-600 rounded-lg">
+                <ShoppingCart class="text-white" :size="20" />
+              </div>
+              <div>
+                <h2 class="text-xl font-playfair font-bold text-gray-800">Tu Pedido</h2>
+                <p class="text-sm text-gray-600">{{ cartItemsCount }} {{ cartItemsCount === 1 ? 'producto' : 'productos' }}</p>
+              </div>
+            </div>
             <button
               @click="closeCart"
-              class="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              class="p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
             >
               <X :size="24" />
             </button>
           </div>
 
-          <!-- Cart Items -->
-          <div class="flex-1 overflow-y-auto p-6 space-y-4 max-h-96">
-            <div
-              v-if="cartItems.length === 0"
-              class="text-center py-12 text-gray-500"
-            >
-              <ShoppingCart :size="48" class="mx-auto mb-4 opacity-50" />
-              <p>Tu carrito está vacío</p>
+          <!-- Cart Items with improved styling -->
+          <div class="flex-1 overflow-y-auto">
+            <div v-if="cartItems.length === 0" class="flex flex-col items-center justify-center h-full text-center p-8">
+              <div class="p-4 bg-gray-100 rounded-full mb-4">
+                <ShoppingCart class="text-gray-400" :size="48" />
+              </div>
+              <h3 class="text-lg font-semibold text-gray-700 mb-2">Tu carrito está vacío</h3>
+              <p class="text-gray-500 mb-6">Agrega algunos platos deliciosos para comenzar</p>
+              <button
+                @click="closeCart"
+                class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+              >
+                Explorar Menú
+              </button>
             </div>
 
-            <div
-              v-for="item in cartItems"
-              :key="item.name"
-              class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl"
-            >
-              <img
-                :src="item.image || '/placeholder-food.jpg'"
-                :alt="item.name"
-                class="w-16 h-16 object-cover rounded-lg"
-                @error="handleImageError"
-              />
-              
-              <div class="flex-1 min-w-0">
-                <h4 class="font-medium text-gray-800 truncate">{{ item.name }}</h4>
-                <p class="text-sm text-gray-500">{{ item.categoryName }}</p>
-                <p class="text-primary font-bold">${{ (item.price * item.quantity).toFixed(2) }}</p>
-              </div>
+            <div v-else class="p-4 space-y-4">
+              <div 
+                v-for="item in cartItems" 
+                :key="item.name"
+                class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-200"
+              >
+                <div class="flex gap-4">
+                  <!-- Enhanced Item Image -->
+                  <div class="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0 relative">
+                    <img 
+                      :src="item.image || '/placeholder-food.jpg'" 
+                      :alt="item.name"
+                      class="w-full h-full object-cover transition-transform duration-200 hover:scale-110"
+                      @error="handleImageError"
+                    />
+                    <div class="absolute inset-0 bg-black/10 hover:bg-black/0 transition-colors duration-200"></div>
+                  </div>
 
-              <div class="flex items-center gap-2">
-                <button
-                  @click="removeFromCart(item.name)"
-                  class="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-red-500 flex items-center justify-center transition-colors"
-                >
-                  <Minus :size="16" />
-                </button>
-                
-                <span class="w-8 text-center font-medium">{{ item.quantity }}</span>
-                
-                <button
-                  @click="addToCartFromSidebar(item)"
-                  class="w-8 h-8 rounded-full bg-green-100 hover:bg-green-200 text-green-500 flex items-center justify-center transition-colors"
-                >
-                  <Plus :size="16" />
-                </button>
+                  <!-- Enhanced Item Details -->
+                  <div class="flex-1 min-w-0">
+                    <h4 class="font-semibold text-gray-800 truncate mb-1">{{ item.name }}</h4>
+                    <p class="text-xs text-gray-500 mb-1">{{ item.categoryName }}</p>
+                    <p class="text-sm text-gray-600">${{ item.price.toFixed(2) }} c/u</p>
+                    
+                    <!-- Dietary badges if available -->
+                    <div class="flex gap-1 mt-2">
+                      <span v-if="item.isVegetarian" class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                        🌱 Vegetariano
+                      </span>
+                      <span v-if="item.spiceLevel && item.spiceLevel !== 'mild'" class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
+                        🌶️ Picante
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Enhanced Quantity Controls -->
+                  <div class="flex flex-col items-end justify-between">
+                    <button
+                      @click="removeFromCart(item.name)"
+                      class="text-gray-400 hover:text-red-600 transition-colors p-1 hover:bg-red-50 rounded"
+                      title="Eliminar del carrito"
+                    >
+                      <Trash2 :size="16" />
+                    </button>
+
+                    <div class="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+                      <button
+                        @click="decreaseQuantity(item)"
+                        :disabled="item.quantity <= 1"
+                        class="w-8 h-8 rounded-md bg-white shadow-sm flex items-center justify-center text-gray-600 hover:text-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      >
+                        <Minus :size="14" />
+                      </button>
+                      
+                      <span class="w-8 text-center font-semibold text-gray-800">{{ item.quantity }}</span>
+                      
+                      <button
+                        @click="addToCartFromSidebar(item)"
+                        class="w-8 h-8 rounded-md bg-white shadow-sm flex items-center justify-center text-gray-600 hover:text-primary-600 transition-colors"
+                      >
+                        <Plus :size="14" />
+                      </button>
+                    </div>
+
+                    <div class="text-right">
+                      <p class="font-bold text-primary-600">${{ (item.price * item.quantity).toFixed(2) }}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Footer -->
-          <div v-if="cartItems.length > 0" class="border-t border-gray-200 p-6 space-y-4">
-            <div class="flex justify-between items-center text-xl font-bold">
-              <span>Total:</span>
-              <span class="text-primary">${{ cartTotal.toFixed(2) }}</span>
+          <!-- Enhanced Footer -->
+          <div v-if="cartItems.length > 0" class="border-t border-gray-200 p-6 bg-gray-50">
+            <!-- Order Summary -->
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between text-gray-600">
+                <span>Subtotal</span>
+                <span>${{ subtotal.toFixed(2) }}</span>
+              </div>
+              <div class="flex justify-between text-gray-600">
+                <span>Delivery</span>
+                <span v-if="deliveryFee > 0">${{ deliveryFee.toFixed(2) }}</span>
+                <span v-else class="text-green-600">Gratis</span>
+              </div>
+              <div class="flex justify-between text-lg font-bold text-gray-800 pt-2 border-t border-gray-300">
+                <span>Total</span>
+                <span class="text-primary-600">${{ total.toFixed(2) }}</span>
+              </div>
             </div>
 
-            <div class="space-y-2">
+            <!-- Enhanced Action Buttons -->
+            <div class="space-y-3">
               <WhatsAppButton
                 :phone="config.phoneNumber"
-                :base-message="config.whatsappMessage"
+                :base-message="whatsappMessage"
                 :cart-items="cartItems"
                 button-text="Enviar Pedido por WhatsApp"
-                class="w-full justify-center py-3 text-lg"
+                class="w-full justify-center bg-green-500 hover:bg-green-600 text-white py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
               />
               
               <button
                 @click="clearCart"
-                class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-lg font-medium transition-colors"
+                class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl font-medium transition-colors"
               >
-                Limpiar Carrito
+                Vaciar Carrito
               </button>
+            </div>
+
+            <!-- Delivery Info -->
+            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+              <div class="flex items-start gap-3">
+                <Clock class="text-blue-600 flex-shrink-0 mt-0.5" :size="16" />
+                <div class="text-sm">
+                  <p class="text-blue-800 font-medium">Tiempo estimado de entrega</p>
+                  <p class="text-blue-600">30-45 minutos</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -118,8 +197,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { ShoppingCart, X, Plus, Minus } from 'lucide-vue-next';
+import { ref, computed } from 'vue';
+import { ShoppingCart, X, Plus, Minus, Trash2, Clock } from 'lucide-vue-next';
 import type { RestaurantConfig, CartItem } from '../types';
 import { useCart } from '../composables/useCart';
 import WhatsAppButton from './WhatsAppButton.vue';
@@ -130,7 +209,7 @@ interface Props {
 
 defineProps<Props>();
 
-const { cartItems, cartTotal, cartItemsCount, addToCart, removeFromCart, clearCart } = useCart();
+const { cartItems, cartItemsCount, addToCart, removeFromCart, clearCart } = useCart();
 
 const isCartOpen = ref(false);
 
@@ -146,10 +225,51 @@ const addToCartFromSidebar = (item: CartItem) => {
   addToCart(item, item.categoryName);
 };
 
+const decreaseQuantity = (item: CartItem) => {
+  if (item.quantity > 1) {
+    // Simply remove one item from cart
+    removeFromCart(item.name);
+    // Add back with reduced quantity
+    const reducedItem = { ...item, quantity: item.quantity - 1 };
+    addToCart(reducedItem as any, item.categoryName);
+  }
+};
+
 const handleImageError = (event: Event) => {
   const target = event.target as HTMLImageElement;
   target.src = '/placeholder-food.jpg';
 };
+
+// Enhanced computed properties
+const subtotal = computed(() => {
+  return cartItems.value.reduce((total, item) => total + (item.price * item.quantity), 0);
+});
+
+const deliveryFee = computed(() => {
+  // Free delivery over $50 or based on config
+  return subtotal.value >= 50 ? 0 : 5;
+});
+
+const total = computed(() => {
+  return subtotal.value + deliveryFee.value;
+});
+
+const whatsappMessage = computed(() => {
+  let message = `¡Hola! Me gustaría hacer el siguiente pedido:\n\n`;
+  
+  cartItems.value.forEach((item) => {
+    message += `• ${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}\n`;
+  });
+  
+  message += `\nSubtotal: $${subtotal.value.toFixed(2)}`;
+  if (deliveryFee.value > 0) {
+    message += `\nDelivery: $${deliveryFee.value.toFixed(2)}`;
+  }
+  message += `\nTotal: $${total.value.toFixed(2)}`;
+  message += `\n\n¡Gracias!`;
+  
+  return message;
+});
 </script>
 
 <style scoped>

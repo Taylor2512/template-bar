@@ -17,6 +17,7 @@
       <Navigation :config="config" />
 
       <!-- Hero Section -->
+            <!-- Hero Section -->
       <section id="inicio">
         <HelloWorld :config="config" />
       </section>
@@ -42,79 +43,118 @@
       </section>
 
       <!-- Footer -->
-      <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <footer class="bg-gray-900 text-white py-12 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+          <div class="absolute inset-0 bg-dots-pattern"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Restaurant Info -->
-            <div>
-              <h3 class="text-xl font-semibold mb-4">{{ config.restaurantName }}</h3>
-              <p class="text-gray-400 mb-4">{{ config.hero?.subtitle || 'Experiencia culinaria única' }}</p>
-              <div class="flex space-x-4">
+            <div class="lg:col-span-2">
+              <div class="flex items-center gap-3 mb-6">
+                <img 
+                  v-if="config.logo" 
+                  :src="config.logo" 
+                  :alt="config.restaurantName"
+                  class="h-12 w-12 rounded-full"
+                  @error="handleLogoError"
+                />
+                <div>
+                  <h3 class="text-2xl font-playfair font-bold">{{ config.restaurantName }}</h3>
+                  <p class="text-gray-400">{{ config.hero?.subtitle || 'Sabores Auténticos' }}</p>
+                </div>
+              </div>
+              
+              <p class="text-gray-300 mb-6 leading-relaxed max-w-md">
+                {{ config.hero?.description || 'Descubre una experiencia gastronómica única con sabores auténticos y ingredientes frescos.' }}
+              </p>
+              
+              <!-- Social Links -->
+              <div class="flex gap-4">
                 <a
                   v-if="config.social?.facebook"
                   :href="config.social.facebook"
                   target="_blank"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="p-3 bg-gray-800 hover:bg-blue-600 rounded-lg transition-colors transform hover:scale-110"
                 >
-                  <Facebook :size="24" />
+                  <Facebook :size="20" />
                 </a>
                 <a
                   v-if="config.social?.instagram"
                   :href="config.social.instagram"
                   target="_blank"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="p-3 bg-gray-800 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-600 rounded-lg transition-all transform hover:scale-110"
                 >
-                  <Instagram :size="24" />
+                  <Instagram :size="20" />
+                </a>
+                <a
+                  v-if="config.social?.twitter"
+                  :href="config.social.twitter"
+                  target="_blank"
+                  class="p-3 bg-gray-800 hover:bg-blue-400 rounded-lg transition-colors transform hover:scale-110"
+                >
+                  <Twitter :size="20" />
                 </a>
               </div>
             </div>
 
-            <!-- Contact Info -->
+            <!-- Quick Links -->
             <div>
-              <h3 class="text-xl font-semibold mb-4">Contacto</h3>
-              <div class="space-y-2 text-gray-400">
-                <div class="flex items-center gap-2">
-                  <MapPin :size="16" />
-                  <span>{{ config.address }}</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <Phone :size="16" />
-                  <a :href="`tel:${config.phoneNumber}`" class="hover:text-white transition-colors">
-                    {{ config.phoneNumber }}
-                  </a>
-                </div>
-                <div class="flex items-center gap-2">
-                  <Mail :size="16" />
-                  <a :href="`mailto:${config.email}`" class="hover:text-white transition-colors">
-                    {{ config.email }}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div>
-              <h3 class="text-xl font-semibold mb-4">Acciones Rápidas</h3>
-              <div class="space-y-3">
+              <h4 class="text-lg font-semibold mb-6 text-white">Enlaces Rápidos</h4>
+              <nav class="space-y-3">
+                <a href="#inicio" class="block text-gray-300 hover:text-white transition-colors hover:translate-x-1 transform duration-200">Inicio</a>
+                <a href="#menu" class="block text-gray-300 hover:text-white transition-colors hover:translate-x-1 transform duration-200">Menú</a>
+                <a href="#contacto" class="block text-gray-300 hover:text-white transition-colors hover:translate-x-1 transform duration-200">Contacto</a>
                 <WhatsAppButton
                   :phone="config.phoneNumber"
                   :base-message="config.whatsappMessage"
                   button-text="Hacer Pedido"
-                  class="w-full justify-center"
+                  class="text-left p-0 text-gray-300 hover:text-green-400 transition-colors hover:translate-x-1 transform duration-200"
                 />
-                <a
-                  href="#menu"
-                  class="block text-center bg-gray-800 hover:bg-gray-700 text-white py-3 px-4 rounded-lg transition-colors"
-                >
-                  Ver Menú Completo
-                </a>
+              </nav>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+              <h4 class="text-lg font-semibold mb-6 text-white">Contacto</h4>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <MapPin class="text-primary-400 flex-shrink-0 mt-1" :size="18" />
+                  <span class="text-gray-300 text-sm">{{ config.address }}</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <Phone class="text-primary-400 flex-shrink-0" :size="18" />
+                  <a 
+                    :href="`tel:${config.phoneNumber}`"
+                    class="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {{ config.phoneNumber }}
+                  </a>
+                </div>
+                <div class="flex items-center gap-3">
+                  <Clock class="text-primary-400 flex-shrink-0" :size="18" />
+                  <span class="text-gray-300 text-sm">Lun-Dom: 9:00-22:00</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {{ new Date().getFullYear() }} {{ config.restaurantName }}. Todos los derechos reservados.</p>
-            <p class="mt-2 text-sm">Template diseñado con ❤️ para restaurantes</p>
+          <!-- Bottom Bar -->
+          <div class="border-t border-gray-800 mt-12 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p class="text-gray-400 text-sm">
+                © {{ currentYear }} {{ config.restaurantName }}. Todos los derechos reservados.
+              </p>
+              <div class="flex items-center gap-6 text-sm text-gray-400">
+                <span>Hecho con ❤️ para {{ config.restaurantName }}</span>
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>En línea</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
@@ -122,21 +162,40 @@
       <!-- Cart Sidebar -->
       <CartSidebar :config="config" />
 
-      <!-- Back to Top Button -->
-      <button
-        @click="scrollToTop"
-        class="fixed bottom-24 left-6 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full shadow-xl transition-all duration-300 z-40"
-        :class="{ 'opacity-0 pointer-events-none': !showBackToTop }"
-      >
-        <ChevronUp :size="24" />
-      </button>
+      <!-- Scroll to Top Button -->
+      <Transition name="fade">
+        <button
+          v-if="showBackToTop"
+          @click="scrollToTop"
+          class="fixed bottom-24 left-6 bg-white hover:bg-gray-50 text-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40"
+        >
+          <ChevronUp :size="24" />
+        </button>
+      </Transition>
     </div>
   </div>
 </template>
 
+<style scoped>
+.bg-dots-pattern {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
+
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-import { Facebook, Instagram, MapPin, Phone, Mail, ChevronUp } from 'lucide-vue-next';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { Facebook, Instagram, Twitter, MapPin, Phone, Clock, ChevronUp } from 'lucide-vue-next';
 import type { MenuCategory, RestaurantConfig } from './types';
 
 // Components
@@ -150,17 +209,73 @@ import WhatsAppButton from './components/WhatsAppButton.vue';
 
 const menu = ref<MenuCategory[]>([]);
 const config = ref<RestaurantConfig>({
-  restaurantName: '',
+  restaurantName: 'Restaurant Name',
+  accentColor: '#10B981',
+  textColor: '#1F2937',
+  backgroundColor: '#FFFFFF',
+  website: '',
+  logo: '',
   primaryColor: '#B91C1C',
   secondaryColor: '#F59E0B',
   phoneNumber: '',
   address: '',
+  email: '',
   whatsappMessage: '',
-  email: ''
+  theme: {
+    fontPrimary: 'Inter',
+    fontSecondary: 'Playfair Display',
+    borderRadius: '0.5rem',
+    shadowIntensity: 'medium',
+    animationSpeed: 'normal'
+  },
+  hero: {
+    title: '',
+    subtitle: '',
+    description: '',
+    backgroundImage: '',
+    overlayOpacity: 0.6,
+    ctaText: 'Ver Menú'
+  },
+  social: {
+    facebook: '',
+    instagram: '',
+    twitter: ''
+  },
+  contact: {
+    schedule: {
+      monday: '9:00 - 22:00',
+      tuesday: '9:00 - 22:00',
+      wednesday: '9:00 - 22:00',
+      thursday: '9:00 - 22:00',
+      friday: '9:00 - 23:00',
+      saturday: '10:00 - 23:00',
+      sunday: '10:00 - 21:00'
+    },
+    location: {
+      lat: 0,
+      lng: 0,
+      googleMapsUrl: ''
+    }
+  },
+  features: [
+    {
+      icon: '🚚',
+      number: '30min',
+      text: 'Delivery',
+      description: 'Entrega rápida'
+    }
+  ],
+  seo: {
+    title: '',
+    description: '',
+    keywords: ''
+  }
 });
 
 const isLoading = ref(true);
 const showBackToTop = ref(false);
+
+const currentYear = computed(() => new Date().getFullYear());
 
 const loadData = async () => {
   try {
@@ -186,10 +301,12 @@ const handleScroll = () => {
 };
 
 const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+const handleLogoError = (event: Event) => {
+  const target = event.target as HTMLImageElement;
+  target.style.display = 'none';
 };
 
 onMounted(async () => {

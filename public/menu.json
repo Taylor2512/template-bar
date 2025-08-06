@@ -2,115 +2,202 @@
   {
     "category": "Entradas",
     "icon": "🥗",
+    "description": "Aperitivos costeños para abrir el apetito",
+    "featured": true,
     "items": [
       {
-        "name": "Empanadas de Queso",
-        "price": 2.50,
-        "description": "Empanadas artesanales rellenas de queso fresco, masa dorada y crujiente",
-        "image": "/empanadas.jpg",
-        "featured": true
-      },
-      {
-        "name": "Ceviche de Camarón",
-        "price": 8.00,
-        "description": "Camarones frescos marinados en limón con cebolla morada y cilantro",
-        "image": "/ceviche.jpg",
-        "featured": false
-      },
-      {
-        "name": "Patacones con Guacamole",
+        "name": "Patacones con Queso",
         "price": 4.50,
-        "description": "Plátano verde frito acompañado de guacamole casero",
-        "image": "/patacones.jpg",
-        "featured": false
+        "description": "Plátano verde frito acompañado de queso costeño derretido y salsa criolla",
+        "image": "https://tse2.mm.bing.net/th/id/OIP.-Mugu1XjsD6J3WBDoWii5gHaF7?r=0",
+        "featured": true,
+        "isVegetarian": true,
+        "isGlutenFree": true,
+        "preparationTime": 10,
+        "calories": 320,
+        "allergens": ["lácteos"]
+      },
+      {
+        "name": "Ceviche de Camarón Reventado",
+        "price": 12.50,
+        "description": "Camarones frescos fritos y marinados en limón con cebolla morada y toques de ají",
+        "image": "https://th.bing.com/th/id/R.ea7451a8c8feded2c28e80d29966e2f9?rik=W%2brN5MI9cGRMWg&pid=ImgRaw&r=0",
+        "featured": true,
+        "isGlutenFree": true,
+        "spiceLevel": "medium",
+        "preparationTime": 15,
+        "calories": 210,
+        "allergens": ["mariscos"]
+      },
+      {
+        "name": "Sartenazo Costeño",
+        "price": 8.00,
+        "description": "Chicharrón de cerdo con patacones, mote y salsa criolla, servido al sartén",
+        "image": "https://s3-media0.fl.yelpcdn.com/bphoto/CIYlGU4qE2I15wVWEr64cA/348s.jpg",
+        "featured": true,
+        "isGlutenFree": true,
+        "preparationTime": 15,
+        "calories": 480,
+        "allergens": []
       }
     ]
   },
   {
-    "category": "Platos Fuertes",
+    "category": "Platos Principales",
     "icon": "🍖",
+    "description": "Sabores auténticos de la costa ecuatoriana",
+    "featured": true,
     "items": [
       {
-        "name": "Seco de Pollo",
-        "price": 12.00,
-        "description": "Pollo guisado en salsa de cilantro, servido con arroz y frijoles",
-        "image": "/seco-pollo.jpg",
-        "featured": true
+        "name": "Costillas Asadas",
+        "price": 15.00,
+        "description": "Jugosas costillas de cerdo marinadas en especias y asadas a la parrilla, servidas con yuca y ensalada fresca",
+        "image": "https://cocina.guru/wp-content/uploads/2021/06/receta-de-chuletas-al-horno-1024x683.jpg",
+        "featured": true,
+        "isGlutenFree": true,
+        "preparationTime": 25,
+        "calories": 720,
+        "allergens": []
       },
       {
-        "name": "Encebollado",
-        "price": 6.50,
-        "description": "Tradicional sopa ecuatoriana con pescado albacora y yuca",
-        "image": "/encebollado.jpg",
-        "featured": true
-      },
-      {
-        "name": "Lomo Saltado",
+        "name": "Corvina Asada",
         "price": 14.00,
-        "description": "Tiras de lomo salteadas con cebolla, tomate y papas fritas",
-        "image": "/lomo-saltado.jpg",
-        "featured": false
+        "description": "Filete de corvina fresco a la parrilla con chimichurri costeño y arroz con menestra",
+        "image": "https://i1.wp.com/casadecampoliving-wp.s3-accelerate.amazonaws.com/2013/07/pescado_frito1.jpg?resize=650%2C365&ssl=1",
+        "featured": true,
+        "isGlutenFree": true,
+        "preparationTime": 20,
+        "calories": 550,
+        "allergens": ["pescado"]
       },
       {
-        "name": "Arroz con Mariscos",
+        "name": "Jumbos Apanados",
         "price": 16.00,
-        "description": "Arroz amarillo con mariscos frescos y vegetales",
-        "image": "/arroz-mariscos.jpg",
-        "featured": false
+        "description": "Langostinos gigantes apanados con panko, acompañados de salsa tártara y arroz con coco",
+        "image": "https://tse3.mm.bing.net/th/id/OIP.vm2290c-N9XHwKVpxLOakwHaEe?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "featured": false,
+        "isGlutenFree": false,
+        "preparationTime": 20,
+        "calories": 640,
+        "allergens": ["mariscos", "gluten"]
+      },
+      {
+        "name": "Arroz con Chancho",
+        "price": 9.50,
+        "description": "Arroz salteado con trozos de cerdo adobado, vegetales y toques criollos",
+        "image": "https://tse3.mm.bing.net/th/id/OIP.vm2290c-N9XHwKVpxLOakwHaEe?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "featured": false,
+        "isGlutenFree": true,
+        "preparationTime": 18,
+        "calories": 680,
+        "allergens": []
+      },
+      {
+        "name": "Seco de Chivo",
+        "price": 16.50,
+        "description": "Tradicional seco guayaquileño de chivo con salsa espesa de cerveza y hierbas, acompañado de arroz y plátano maduro",
+        "image": "https://th.bing.com/th/id/R.10cc46dedf0345ca5380c4d3c1f91440?rik=zKrTPrSwt%2bwICA&pid=ImgRaw&r=0",
+        "featured": true,
+        "isGlutenFree": true,
+        "preparationTime": 30,
+        "calories": 750,
+        "allergens": []
       }
     ]
   },
   {
     "category": "Bebidas",
     "icon": "🍹",
+    "description": "Refrescos y tragos típicos costeños",
+    "featured": false,
     "items": [
       {
-        "name": "Chicha Morada",
+        "name": "Colada de Avena con Naranjilla",
+        "price": 3.50,
+        "description": "Bebida típica de avena cocida con naranjilla y especias",
+        "image": "https://quebuenasazon.com/wp-content/uploads/2021/04/dulce-de-coco.jpg",
+        "featured": true,
+        "isVegan": true,
+        "isGlutenFree": true,
+        "preparationTime": 5,
+        "calories": 150,
+        "allergens": []
+      },
+      {
+        "name": "Batido de Coco",
+        "price": 4.00,
+        "description": "Cremoso batido de coco fresco con hielo y toques de canela",
+        "image": "https://quebuenasazon.com/wp-content/uploads/2021/04/dulce-de-coco.jpg",
+        "featured": false,
+        "isVegan": true,
+        "isGlutenFree": true,
+        "preparationTime": 5,
+        "calories": 210,
+        "allergens": []
+      },
+      {
+        "name": "Cerveza Artesanal Costeña",
+        "price": 5.00,
+        "description": "Selección de cervezas artesanales locales tipo Lager y Pilsner",
+        "image": "https://tse2.mm.bing.net/th/id/OIP.rk4Mx76ak2uVIbF0Q0Y3CAHaEK?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "featured": false,
+        "isGlutenFree": false,
+        "preparationTime": 2,
+        "calories": 160,
+        "allergens": ["gluten"]
+      },
+      {
+        "name": "Jugo de Maracuyá",
         "price": 3.00,
-        "description": "Bebida tradicional de maíz morado con especias",
-        "image": "/chicha.jpg",
-        "featured": false
-      },
-      {
-        "name": "Jugo Natural",
-        "price": 2.50,
-        "description": "Jugos frescos de temporada: naranja, maracuyá, piña",
-        "image": "/jugos.jpg",
-        "featured": false
-      },
-      {
-        "name": "Café de Olla",
-        "price": 2.00,
-        "description": "Café tradicional con canela y piloncillo",
-        "image": "/cafe.jpg",
-        "featured": false
+        "description": "Refrescante jugo natural de maracuyá con un toque de azúcar morena",
+        "image": "https://tse3.mm.bing.net/th/id/OIP.RbQqEfsphpQEIFRrpoEY1gHaEL?r=0&cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "featured": true,
+        "isVegan": true,
+        "isGlutenFree": true,
+        "preparationTime": 3,
+        "calories": 90,
+        "allergens": []
       }
     ]
   },
   {
     "category": "Postres",
     "icon": "🍰",
+    "description": "Dulces con sabor costeño",
+    "featured": false,
     "items": [
       {
-        "name": "Tres Leches",
-        "price": 4.00,
-        "description": "Clásico pastel empapado en tres tipos de leche",
-        "image": "/tres-leches.jpg",
-        "featured": true
-      },
-      {
-        "name": "Suspiro Limeño",
+        "name": "Dulce de Coco",
         "price": 3.50,
-        "description": "Postre peruano con manjar blanco y merengue",
-        "image": "/suspiro.jpg",
-        "featured": false
+        "description": "Coco rallado cocido en panela, especias y leche",
+        "image": "https://quebuenasazon.com/wp-content/uploads/2021/04/dulce-de-coco.jpg",
+        "featured": true,
+        "isVegetarian": true,
+        "preparationTime": 8,
+        "calories": 280,
+        "allergens": ["lácteos"]
       },
       {
-        "name": "Helado Artesanal",
+        "name": "Bollo de Pescado",
+        "price": 2.50,
+        "description": "Masa de plátano rellena de pescado y especias, envuelta en hoja de plátano",
+        "image": "https://th.bing.com/th/id/R.10cc46dedf0345ca5380c4d3c1f91440?rik=zKrTPrSwt%2bwICA&pid=ImgRaw&r=0",
+        "featured": false,
+        "isVegetarian": true,
+        "preparationTime": 10,
+        "calories": 340,
+        "allergens": ["frutos secos"]
+      },
+      {
+        "name": "Helado de Paila",
         "price": 3.00,
-        "description": "Helados caseros en sabores únicos",
-        "image": "/helado.jpg",
-        "featured": false
+        "description": "Helado artesanal de frutas locales preparado al estilo tradicional",
+        "image": "https://i0.wp.com/www.makeitlikeaman.com/wp-content/uploads/2021/01/Cranbery-Sorbet-7.jpg?fit=2500%2C1666&ssl=1",
+        "featured": false,
+        "isVegetarian": true,
+        "preparationTime": 2,
+        "calories": 180,
+        "allergens": []
       }
     ]
   }
