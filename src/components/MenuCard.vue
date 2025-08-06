@@ -1,7 +1,7 @@
 <template>
-  <div class="card-elevated group cursor-pointer overflow-hidden h-full">
+  <div class="card-elevated group cursor-pointer overflow-hidden h-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-lg dark:shadow-gray-900/20 hover:shadow-xl dark:hover:shadow-gray-900/30 transition-all duration-300">
     <!-- Image Container with Overlay -->
-    <div class="relative h-64 overflow-hidden">
+    <div class="relative h-48 md:h-64 overflow-hidden">
       <img 
         :src="item.image || '/placeholder-food.jpg'" 
         :alt="item.name"
@@ -13,59 +13,64 @@
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       
       <!-- Featured Badge -->
-      <div v-if="item.featured" class="absolute top-4 left-4">
-        <div class="badge-featured flex items-center gap-1">
-          <Star :size="14" class="fill-current" />
-          <span>Especial</span>
+      <div v-if="item.featured" class="absolute top-2 md:top-4 left-2 md:left-4">
+        <div class="badge-featured flex items-center gap-1 text-xs md:text-sm bg-gradient-to-r from-secondary-500 to-primary-500 text-white px-2 py-1 rounded-full shadow-lg">
+          <Star :size="12" class="fill-current md:w-3.5 md:h-3.5" />
+          <span class="hidden sm:inline">Especial</span>
+          <span class="sm:hidden">★</span>
         </div>
       </div>
 
       <!-- Price Tag -->
-      <div class="absolute top-4 right-4">
-        <div class="price-tag text-lg font-bold">
+      <div class="absolute top-2 md:top-4 right-2 md:right-4">
+        <div class="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-3 py-1 rounded-full text-base md:text-lg font-bold shadow-lg">
           ${{ item.price.toFixed(2) }}
         </div>
       </div>
 
       <!-- Dietary & Spice Badges -->
-      <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
-        <div v-if="item.isVegetarian" class="badge-dietary text-xs">
-          🌱 Vegetariano
+      <div class="absolute bottom-2 md:bottom-4 left-2 md:left-4 flex flex-wrap gap-1 md:gap-2">
+        <div v-if="item.isVegetarian" class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded-lg text-xs border border-green-200 dark:border-green-700">
+          <span class="hidden sm:inline">🌱 Vegetariano</span>
+          <span class="sm:hidden">🌱</span>
         </div>
-        <div v-if="item.isVegan" class="badge-dietary text-xs">
-          🌿 Vegano
+        <div v-if="item.isVegan" class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded-lg text-xs border border-green-200 dark:border-green-700">
+          <span class="hidden sm:inline">🌿 Vegano</span>
+          <span class="sm:hidden">🌿</span>
         </div>
-        <div v-if="item.isGlutenFree" class="badge-dietary text-xs">
-          🌾 Sin Gluten
+        <div v-if="item.isGlutenFree" class="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 px-2 py-1 rounded-lg text-xs border border-amber-200 dark:border-amber-700">
+          <span class="hidden sm:inline">🌾 Sin Gluten</span>
+          <span class="sm:hidden">🌾</span>
         </div>
-        <div v-if="item.spiceLevel" class="badge-spice text-xs">
-          {{ getSpiceIndicator(item.spiceLevel) }} {{ getSpiceLabel(item.spiceLevel) }}
+        <div v-if="item.spiceLevel" class="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-2 py-1 rounded-lg text-xs border border-red-200 dark:border-red-700">
+          <span>{{ getSpiceIndicator(item.spiceLevel) }}</span>
+          <span class="hidden sm:inline"> {{ getSpiceLabel(item.spiceLevel) }}</span>
         </div>
       </div>
 
       <!-- Preparation Time -->
-      <div v-if="item.preparationTime" class="absolute bottom-4 right-4">
-        <div class="bg-black/70 text-white px-2 py-1 rounded-lg text-xs flex items-center gap-1">
-          <Clock :size="12" />
+      <div v-if="item.preparationTime" class="absolute bottom-2 md:bottom-4 right-2 md:right-4">
+        <div class="bg-black/70 dark:bg-gray-900/80 text-white px-2 py-1 rounded-lg text-xs flex items-center gap-1 backdrop-blur-sm">
+          <Clock :size="10" class="md:w-3 md:h-3" />
           <span>{{ item.preparationTime }}min</span>
         </div>
       </div>
     </div>
 
     <!-- Content -->
-    <div class="p-6 flex-1 flex flex-col">
+    <div class="p-4 md:p-6 flex-1 flex flex-col">
       <!-- Title and Description -->
       <div class="flex-1">
-        <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary-600 transition-colors duration-300">
+        <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2 md:mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300 line-clamp-2">
           {{ item.name }}
         </h3>
         
-        <p class="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
+        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 md:mb-4 line-clamp-2 md:line-clamp-3 leading-relaxed">
           {{ item.description }}
         </p>
 
         <!-- Additional Info -->
-        <div class="flex items-center justify-between text-xs text-gray-500 mb-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs text-gray-500 dark:text-gray-400 mb-3 md:mb-4 gap-1 sm:gap-0">
           <div v-if="item.calories" class="flex items-center gap-1">
             <Zap :size="12" />
             <span>{{ item.calories }} cal</span>
@@ -73,38 +78,39 @@
           
           <div v-if="item.allergens && item.allergens.length > 0" class="flex items-center gap-1">
             <AlertTriangle :size="12" />
-            <span>Contiene: {{ item.allergens.join(', ') }}</span>
+            <span class="hidden sm:inline">Contiene: {{ item.allergens.join(', ') }}</span>
+            <span class="sm:hidden">Alérgenos: {{ item.allergens.join(', ').substring(0, 20) }}{{ item.allergens.join(', ').length > 20 ? '...' : '' }}</span>
           </div>
         </div>
       </div>
       
       <!-- Action Controls -->
-      <div class="flex items-center justify-between gap-3 mt-auto pt-4 border-t border-gray-100">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-auto pt-3 md:pt-4 border-t border-gray-100 dark:border-gray-700">
         <!-- Quantity Controls -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 md:gap-3">
           <button
             @click="removeFromCart(item.name)"
             :disabled="itemQuantity === 0"
-            class="w-10 h-10 rounded-full bg-red-50 hover:bg-red-100 text-red-500 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-all duration-200 transform hover:scale-110"
+            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-50 dark:bg-red-900/30 hover:bg-red-100 dark:hover:bg-red-900/50 text-red-500 dark:text-red-400 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-all duration-200 transform hover:scale-110"
             :class="{ 'animate-pulse': itemQuantity > 0 }"
           >
-            <Minus :size="16" />
+            <Minus :size="14" class="md:w-4 md:h-4" />
           </button>
           
-          <div class="flex flex-col items-center">
-            <span class="text-lg font-bold text-gray-800 min-w-[2rem] text-center">
+          <div class="flex flex-col items-center min-w-[3rem]">
+            <span class="text-base md:text-lg font-bold text-gray-800 text-center">
               {{ itemQuantity }}
             </span>
-            <span v-if="itemQuantity > 0" class="text-xs text-gray-500">
+            <span v-if="itemQuantity > 0" class="text-xs text-gray-500 whitespace-nowrap">
               ${{ (item.price * itemQuantity).toFixed(2) }}
             </span>
           </div>
           
           <button
             @click="addToCart"
-            class="w-10 h-10 rounded-full bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-all duration-200 transform hover:scale-110 shadow-lg hover:shadow-xl"
+            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-all duration-200 transform hover:scale-110 shadow-lg hover:shadow-xl"
           >
-            <Plus :size="16" />
+            <Plus :size="14" class="md:w-4 md:h-4" />
           </button>
         </div>
 
@@ -113,9 +119,13 @@
           :phone="config.phoneNumber"
           :base-message="config.whatsappMessage"
           :item="{ name: item.name, price: item.price }"
-          button-text="Pedir"
-          class="border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2 hover:scale-105 transition-all duration-300 font-medium"
-        />
+          button-text=""
+          class="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-1 md:gap-2"
+        >
+          <MessageCircle :size="14" class="md:w-4 md:h-4" />
+          <span class="hidden sm:inline">Pedir</span>
+          <span class="sm:hidden">WhatsApp</span>
+        </WhatsAppButton>
       </div>
     </div>
 
@@ -126,7 +136,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Plus, Minus, Star, Clock, Zap, AlertTriangle } from 'lucide-vue-next';
+import { Plus, Minus, Star, Clock, Zap, AlertTriangle, MessageCircle } from 'lucide-vue-next';
 import type { MenuItem, RestaurantConfig } from '../types';
 import { useCart } from '../composables/useCart';
 import WhatsAppButton from './WhatsAppButton.vue';

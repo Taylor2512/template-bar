@@ -1,30 +1,62 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
 
 :root {
-  --color-primary: #DC2626;
-  --color-secondary: #F59E0B;
-  --color-accent: #059669;
+  /* Light Mode - Restaurant Color Palette */
+  --color-primary: #E88506;
+  --color-secondary: #DC2626;
+  --color-accent: #16A34A;
   --color-text: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
   --color-background: #FEFCF9;
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #F9FAFB;
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
   
-  /* Enhanced color palette */
-  --color-primary-50: #FEF2F2;
-  --color-primary-100: #FEE2E2;
-  --color-primary-500: #EF4444;
-  --color-primary-600: #DC2626;
-  --color-primary-700: #B91C1C;
-  --color-primary-900: #7F1D1D;
+  /* Enhanced primary palette - Warm Orange/Amber */
+  --color-primary-50: #FEF7ED;
+  --color-primary-100: #FDEDD3;
+  --color-primary-200: #FBD8A5;
+  --color-primary-300: #F8BE6D;
+  --color-primary-400: #F59E42;
+  --color-primary-500: #E88506;
+  --color-primary-600: #D67002;
+  --color-primary-700: #B45A05;
+  --color-primary-800: #93470B;
+  --color-primary-900: #7A3B0D;
   
-  --color-secondary-50: #FFFBEB;
-  --color-secondary-100: #FEF3C7;
-  --color-secondary-500: #F59E0B;
-  --color-secondary-600: #D97706;
+  /* Secondary palette - Appetite-stimulating Red */
+  --color-secondary-50: #FEF2F1;
+  --color-secondary-100: #FEE2DF;
+  --color-secondary-200: #FECAC5;
+  --color-secondary-300: #FCA59E;
+  --color-secondary-400: #F87566;
+  --color-secondary-500: #EF4F36;
+  --color-secondary-600: #DC2626;
+  --color-secondary-700: #B91C1C;
+  --color-secondary-800: #991B1B;
+  --color-secondary-900: #7F1D1D;
   
-  --color-accent-50: #ECFDF5;
-  --color-accent-100: #D1FAE5;
-  --color-accent-500: #10B981;
-  --color-accent-600: #059669;
+  /* Accent palette - Fresh Green */
+  --color-accent-50: #F0FDF3;
+  --color-accent-100: #DCFCE5;
+  --color-accent-200: #BBF7CC;
+  --color-accent-300: #86EFAC;
+  --color-accent-400: #4ADE80;
+  --color-accent-500: #22C55E;
+  --color-accent-600: #16A34A;
+  --color-accent-700: #15803D;
+  --color-accent-800: #166534;
+  --color-accent-900: #14532D;
+  
+  /* Light mode specific variables */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   
   /* Typography */
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -47,6 +79,40 @@
   --scrollbar-track: #f1f5f9;
   --scrollbar-thumb: var(--color-primary);
   --scrollbar-thumb-hover: var(--color-primary-700);
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode - Restaurant Color Palette */
+    --color-text: #F9FAFB;
+    --color-text-secondary: #D1D5DB;
+    --color-text-muted: #9CA3AF;
+    --color-background: #111827;
+    --color-surface: #1F2937;
+    --color-surface-secondary: #374151;
+    --color-border: #4B5563;
+    --color-border-light: #374151;
+    
+    /* Dark mode badge colors */
+    --color-secondary-50: rgba(220, 38, 38, 0.15);
+    --color-accent-50: rgba(34, 197, 94, 0.15);
+    
+    /* Dark mode specific shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    
+    /* Scrollbar styling for dark mode */
+    --scrollbar-track: #374151;
+    --scrollbar-thumb: var(--color-primary);
+    --scrollbar-thumb-hover: var(--color-primary-600);
+    
+    /* Color scheme */
+    color-scheme: dark;
+  }
 }
 
 /* Enhanced smooth scrolling with offset for fixed header */
@@ -220,8 +286,9 @@ body {
   background: 
     radial-gradient(circle at 25% 25%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
-    linear-gradient(135deg, var(--color-background) 0%, #faf7f2 100%);
+    linear-gradient(135deg, var(--color-background) 0%, var(--color-surface-secondary) 100%);
   background-attachment: fixed;
+  color: var(--color-text);
 }
 
 /* Selection styling */
@@ -270,6 +337,104 @@ body {
   100% { background-position: -200% 0; }
 }
 
+/* Mobile-First Responsive Utilities */
+@media (max-width: 640px) {
+  /* Typography adjustments */
+  body {
+    font-size: 14px;
+  }
+  
+  /* Spacing adjustments */
+  .mobile-px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .mobile-py-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  /* Text sizes */
+  .mobile-text-sm {
+    font-size: 0.875rem !important;
+  }
+  
+  .mobile-text-xs {
+    font-size: 0.75rem !important;
+  }
+  
+  /* Button adjustments */
+  .btn-primary {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+  
+  /* Card adjustments */
+  .card-elevated {
+    border-radius: 0.5rem;
+  }
+  
+  .card-elevated:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Animation adjustments */
+  .animate-float {
+    animation-duration: 4s;
+  }
+  
+  .animate-bounce-slow {
+    animation-duration: 2s;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .tablet-text-base {
+    font-size: 1rem !important;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1440px) {
+  .xl-max-w-8xl {
+    max-width: 88rem !important;
+  }
+  
+  .xl-text-6xl {
+    font-size: 3.75rem !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .card-elevated {
+    border: 2px solid #000;
+  }
+  
+  .badge-featured,
+  .badge-dietary,
+  .badge-spice {
+    border-width: 2px;
+  }
+}
+
 /* Print styles */
 @media print {
   .no-print {
@@ -278,11 +443,18 @@ body {
   
   body {
     background: white !important;
+    font-size: 12pt;
   }
   
   .card-elevated {
     box-shadow: none !important;
-    border: 1px solid #e5e5e5 !important;
+    border: 1px solid #ccc;
+  }
+  
+  /* Remove animations in print */
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
 

@@ -1,10 +1,10 @@
 <template>
   <button
     @click="sendWhatsApp"
-    class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+    class="inline-flex items-center justify-center gap-1 sm:gap-2 bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-3 sm:px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl dark:shadow-green-600/20 dark:hover:shadow-green-500/30 text-sm sm:text-base touch-manipulation"
   >
-    <MessageCircle :size="18" />
-    {{ buttonText }}
+    <MessageCircle :size="16" class="sm:w-5 sm:h-5 flex-shrink-0" />
+    <span class="truncate">{{ buttonText }}</span>
   </button>
 </template>
 

@@ -162,6 +162,9 @@
       <!-- Cart Sidebar -->
       <CartSidebar :config="config" />
 
+      <!-- Floating Cart Button (Mobile) -->
+      <FloatingCartButton @toggle-cart="toggleCart" />
+
       <!-- Scroll to Top Button -->
       <Transition name="fade">
         <button
@@ -206,6 +209,7 @@ import ContactForm from './components/ContactForm.vue';
 import QRGenerator from './components/QRGenerator.vue';
 import CartSidebar from './components/CartSidebar.vue';
 import WhatsAppButton from './components/WhatsAppButton.vue';
+import FloatingCartButton from './components/FloatingCartButton.vue';
 
 const menu = ref<MenuCategory[]>([]);
 const config = ref<RestaurantConfig>({
@@ -307,6 +311,12 @@ const scrollToTop = () => {
 const handleLogoError = (event: Event) => {
   const target = event.target as HTMLImageElement;
   target.style.display = 'none';
+};
+
+const toggleCart = () => {
+  // This will be handled by the cart sidebar component
+  const cartEvent = new CustomEvent('toggle-cart');
+  window.dispatchEvent(cartEvent);
 };
 
 onMounted(async () => {
