@@ -72,7 +72,9 @@
           :phone="config.phoneNumber"
           :base-message="config.whatsappMessage"
           button-text="Hacer Pedido"
-          class="group w-full sm:w-auto text-base md:text-lg px-8 md:px-10 py-4 md:py-5 rounded-full bg-green-600 hover:bg-green-700 shadow-2xl hover:shadow-green-500/25 transform hover:scale-105 transition-all duration-300 font-semibold border border-green-500/30 min-w-[200px]"
+          size="xl"
+          variant="default"
+          custom-classes="w-full sm:w-auto rounded-full shadow-2xl hover:shadow-green-500/25 transform hover:scale-105 border border-green-500/30 min-w-[200px]"
         />
       </div>
 

@@ -125,7 +125,10 @@
           :phone="config.phoneNumber" 
           :base-message="config.whatsappMessage"
           button-text="Contactar por WhatsApp"
-          class="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base" />
+          size="lg"
+          variant="default"
+          custom-classes="transform hover:scale-105 shadow-lg hover:shadow-xl"
+        />
         
         <IconButton
           variant="primary"

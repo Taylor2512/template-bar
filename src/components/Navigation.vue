@@ -41,7 +41,8 @@
             :phone="config.phoneNumber"
             :base-message="config.whatsappMessage"
             button-text="Pedir"
-            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+            size="sm"
+            variant="default"
           />
           
           <!-- Phone Call Button -->
@@ -61,10 +62,12 @@
             :phone="config.phoneNumber"
             :base-message="config.whatsappMessage"
             button-text=""
-            class="bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200"
-          >
-            <MessageCircle :size="18" />
-          </WhatsAppButton>
+            size="md"
+            variant="default"
+            :icon="true"
+            :show-text="false"
+            class="p-3 rounded-lg shadow-md"
+          />
 
           <!-- Mobile menu button -->
           <button
@@ -102,7 +105,9 @@
               :phone="config.phoneNumber"
               :base-message="config.whatsappMessage"
               button-text="Hacer Pedido"
-              class="w-full justify-center bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white py-3 px-4 rounded-xl font-medium shadow-md"
+              size="lg"
+              variant="default"
+              custom-classes="w-full justify-center"
             />
             
             <a 

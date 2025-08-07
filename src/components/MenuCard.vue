@@ -119,13 +119,12 @@
           :phone="config.phoneNumber"
           :base-message="config.whatsappMessage"
           :item="{ name: item.name, price: item.price }"
-          button-text=""
-          class="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-1 md:gap-2"
-        >
-          <MessageCircle :size="14" class="md:w-4 md:h-4" />
-          <span class="hidden sm:inline">Pedir</span>
-          <span class="sm:hidden">WhatsApp</span>
-        </WhatsAppButton>
+          button-text="Pedir"
+          size="sm"
+          variant="default"
+          :icon="true"
+          class="w-full sm:w-auto text-xs md:text-sm"
+        />
       </div>
     </div>
 
@@ -136,7 +135,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Plus, Minus, Star, Clock, Zap, AlertTriangle, MessageCircle } from 'lucide-vue-next';
+import { Plus, Minus, Star, Clock, Zap, AlertTriangle } from 'lucide-vue-next';
 import type { MenuItem, RestaurantConfig } from '../types';
 import { useCart } from '../composables/useCart';
 import WhatsAppButton from './WhatsAppButton.vue';

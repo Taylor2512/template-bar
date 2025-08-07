@@ -1,18 +1,46 @@
-# 🍽️ Template de Menú de Restaurante
+# 🍽️ Template Restaurant/Bar - Sistema UI Avanzado
 
-Un elegante y moderno template de menú de restaurante construido con **Vue 3**, **TypeScript**, **Vite** y **Tailwind CSS**. Completamente responsive, interactivo y listo para personalizar.
+Una plantilla moderna y completamente parametrizable para restaurantes, bares y establecimientos gastronómicos, construida con **Vue 3**, **TypeScript**, **Vite** y **Tailwind CSS**.
 
-## ✨ Características
+## ✨ Características Principales
 
-- 🎨 **Diseño Elegante y Moderno** - Interfaz atractiva con animaciones suaves
-- 📱 **Totalmente Responsive** - Optimizado para móvil, tablet y escritorio
-- 🛒 **Carrito de Compras** - Sistema de carrito con contador y gestión de items
-- 📲 **Integración WhatsApp** - Pedidos directos por WhatsApp
-- 🎯 **QR Generator** - Genera códigos QR para compartir el menú
-- 📧 **Formulario de Contacto** - Sistema de contacto integrado
-- 🔧 **Completamente Configurable** - JSON para configuración y menú
-- ⚡ **Alto Rendimiento** - Construido con Vite para máxima velocidad
-- 🎭 **Animaciones Fluidas** - Transiciones y animaciones con CSS
+### 🎨 Sistema UI Completamente Parametrizable
+- **Temas Adaptativos**: Detección automática del tema del sistema operativo (light/dark)
+- **Configuración Granular**: Control total sobre la visibilidad y comportamiento de cada componente
+- **Presets de Negocio**: Configuraciones predefinidas para diferentes tipos de establecimientos
+- **Accesibilidad Avanzada**: Soporte para alto contraste, texto grande, y reducción de movimiento
+
+### 📱 Responsive & Mobile-First
+- Diseño completamente responsivo
+- Optimizado para dispositivos móviles
+- Navegación adaptativa según el tamaño de pantalla
+- Touch-friendly interactions
+
+### �️ Componentes Avanzados
+
+#### 📋 Menú Dinámico
+- Categorías organizadas con filtros
+- Galería de imágenes optimizada
+- Información nutricional y alérgenos
+- Sistema de favoritos
+
+#### 🛒 Sistema de Carrito
+- Carrito flotante para móviles
+- Persistencia en localStorage
+- Cálculo automático de totales
+- Botón WhatsApp integrado
+
+#### � WhatsApp Parametrizable
+- Múltiples variantes de diseño
+- Estados de carga y error
+- Tracking de eventos (opcional)
+- Mensajes personalizables
+
+#### 🎨 Theme Customizer (Desarrollo)
+- Panel interactivo de personalización
+- Vista previa en tiempo real
+- Exportación de configuraciones
+- Presets predefinidos
 
 ## 🚀 Instalación y Configuración
 

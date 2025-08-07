@@ -168,7 +168,9 @@
                 :base-message="whatsappMessage"
                 :cart-items="cartItems"
                 button-text="Enviar Pedido por WhatsApp"
-                class="w-full justify-center bg-green-500 hover:bg-green-600 text-white py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                size="lg"
+                variant="default"
+                custom-classes="w-full justify-center rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
               />
               
               <button

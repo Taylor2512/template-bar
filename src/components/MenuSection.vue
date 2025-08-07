@@ -113,8 +113,14 @@
       <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3 sm:mb-4">¿Listo para ordenar?</h3>
       <p class="text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">Haz tu pedido directamente por
         WhatsApp y lo preparamos para ti</p>
-      <WhatsAppButton :phone="config.phoneNumber" :base-message="config.whatsappMessage"
-        button-text="Hacer Pedido Completo" class="text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full" />
+      <WhatsAppButton 
+        :phone="config.phoneNumber" 
+        :base-message="config.whatsappMessage"
+        button-text="Hacer Pedido Completo" 
+        size="lg"
+        variant="default"
+        custom-classes="rounded-full"
+      />
     </Card>
   </SectionContainer>
 </template>

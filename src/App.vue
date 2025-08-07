@@ -1,35 +1,63 @@
 <template>
   <div 
     class="min-h-screen"
-    :style="`--color-primary: ${config.primaryColor}; --color-secondary: ${config.secondaryColor}; --color-accent: ${config.primaryColor}bb`"
+    :class="[
+      `theme-${computedTheme}`,
+      { 'high-contrast': uiConfig.accessibility.highContrast },
+      { 'large-text': uiConfig.accessibility.largeText },
+      { 'reduced-motion': uiConfig.accessibility.reducedMotion }
+    ]"
+    :style="cssVariables"
   >
     <!-- Loading State -->
-    <div v-if="isLoading" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+    <div v-if="isLoading" class="fixed inset-0 bg-white dark:bg-gray-900 flex items-center justify-center z-50">
       <div class="text-center">
         <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto mb-4"></div>
-        <p class="text-gray-600">Cargando menú...</p>
+        <p class="text-gray-600 dark:text-gray-300">Cargando menú...</p>
       </div>
     </div>
 
     <!-- Main Content -->
     <div v-else>
+      <!-- Theme Customizer (Development only) -->
+      <ThemeCustomizer 
+        v-if="showThemeCustomizer && isDevelopment" 
+        @close="showThemeCustomizer = false"
+      />
+
       <!-- Navigation -->
-      <Navigation :config="config" />
+      <Navigation 
+        v-if="uiConfig.features.navigation?.enabled && uiConfig.features.navigation?.visible"
+        :config="config" 
+      />
 
       <!-- Hero Section -->
-            <!-- Hero Section -->
-      <section id="inicio">
+      <section 
+        v-if="uiConfig.features.hero?.enabled && uiConfig.features.hero?.visible"
+        id="inicio"
+      >
         <HelloWorld :config="config" />
       </section>
 
       <!-- Menu Section -->
-      <MenuSection :menu="menu" :config="config" />
+      <MenuSection 
+        v-if="uiConfig.features.menu?.enabled && uiConfig.features.menu?.visible"
+        :menu="menu" 
+        :config="config" 
+      />
 
       <!-- Contact Section -->
-      <ContactSection :config="config" />
+      <ContactSection 
+        v-if="uiConfig.features.contact?.enabled && uiConfig.features.contact?.visible"
+        :config="config" 
+      />
 
       <!-- QR Section -->
-      <section id="qr" class="py-8 sm:py-12 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <section 
+        v-if="uiConfig.features.qr?.enabled && uiConfig.features.qr?.visible"
+        id="qr" 
+        class="py-8 sm:py-12 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
+      >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-8 sm:mb-12 md:mb-16">
             <div class="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6">
@@ -208,6 +236,8 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { Facebook, Instagram, Twitter, MapPin, Phone, Clock, ChevronUp, QrCode } from 'lucide-vue-next';
 import type { MenuCategory, RestaurantConfig } from './types';
+import { useUI } from './composables/useUI';
+import { themeUtils } from './config/ui';
 
 // Components
 import Navigation from './components/Navigation.vue';
@@ -218,6 +248,10 @@ import QRGenerator from './components/QRGenerator.vue';
 import CartSidebar from './components/CartSidebar.vue';
 import WhatsAppButton from './components/WhatsAppButton.vue';
 import FloatingCartButton from './components/FloatingCartButton.vue';
+import ThemeCustomizer from './components/ThemeCustomizer.vue';
+
+// UI Configuration
+const { config: uiConfig, applyPreset } = useUI();
 
 const menu = ref<MenuCategory[]>([]);
 const config = ref<RestaurantConfig>({
@@ -286,6 +320,29 @@ const config = ref<RestaurantConfig>({
 
 const isLoading = ref(true);
 const showBackToTop = ref(false);
+const showThemeCustomizer = ref(false);
+
+// Development mode detection
+const isDevelopment = computed(() => {
+  return import.meta.env.DEV;
+});
+
+// Computed theme mode
+const computedTheme = computed(() => {
+  return themeUtils.getComputedThemeMode(uiConfig.value.theme.mode);
+});
+
+// CSS Variables from UI config
+const cssVariables = computed(() => {
+  const variables = themeUtils.generateCSSVariables(uiConfig.value);
+  
+  // Add legacy variables for backwards compatibility
+  variables['--color-primary'] = config.value.primaryColor;
+  variables['--color-secondary'] = config.value.secondaryColor;
+  variables['--color-accent'] = config.value.primaryColor + 'bb';
+  
+  return variables;
+});
 
 const currentYear = computed(() => new Date().getFullYear());
 
@@ -300,6 +357,11 @@ const loadData = async () => {
     const menuResponse = await fetch('/menu.json');
     const menuData = await menuResponse.json();
     menu.value = menuData;
+
+    // Apply UI theme based on business type if detected
+    if (configData.businessType) {
+      applyPreset(configData.businessType);
+    }
 
   } catch (error) {
     console.error('Error loading data:', error);
@@ -327,12 +389,24 @@ const toggleCart = () => {
   window.dispatchEvent(cartEvent);
 };
 
+// Keyboard shortcuts for development
+const handleKeyDown = (event: KeyboardEvent) => {
+  if (isDevelopment.value && event.ctrlKey && event.shiftKey && event.key === 'T') {
+    showThemeCustomizer.value = !showThemeCustomizer.value;
+  }
+};
+
 onMounted(async () => {
   await loadData();
   window.addEventListener('scroll', handleScroll);
+  window.addEventListener('keydown', handleKeyDown);
+  
+  // Apply CSS variables on mount
+  themeUtils.applyCSSVariables(uiConfig.value);
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener('keydown', handleKeyDown);
 });
 </script>
