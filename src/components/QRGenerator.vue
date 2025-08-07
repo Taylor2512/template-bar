@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg dark:shadow-gray-900/50 p-4 sm:p-6 text-center border border-gray-100 dark:border-gray-700">
+  <Card custom-classes="text-center">
     <h3 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100 mb-3 sm:mb-4">
       <QrCode class="inline mr-2" :size="20" />
       Escanea y Comparte
@@ -41,13 +41,14 @@
         <span class="sm:hidden">📤</span>
       </button>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { QrCode, Download, Share2 } from 'lucide-vue-next';
 import { generateQR } from '../utils';
+import { Card } from './common';
 
 const qrCode = ref<string | null>(null);
 

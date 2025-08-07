@@ -25,19 +25,27 @@
       <!-- Menu Section -->
       <MenuSection :menu="menu" :config="config" />
 
-      <!-- Contact & QR Section -->
-      <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <!-- Contact Form -->
-            <div id="contacto">
-              <ContactForm :config="config" />
-            </div>
+      <!-- Contact Section -->
+      <ContactSection :config="config" />
 
-            <!-- QR Generator -->
-            <div id="qr">
-              <QRGenerator />
+      <!-- QR Section -->
+      <section id="qr" class="py-8 sm:py-12 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-8 sm:mb-12 md:mb-16">
+            <div class="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6">
+              <div class="w-6 sm:w-8 md:w-12 h-0.5 bg-gradient-to-r from-transparent to-primary-600 dark:to-primary-400"></div>
+              <QrCode class="text-primary-600 dark:text-primary-400" :size="20" />
+              <div class="w-6 sm:w-8 md:w-12 h-0.5 bg-gradient-to-l from-transparent to-primary-600 dark:to-primary-400"></div>
             </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-gray-800 dark:text-gray-100 mb-3 sm:mb-4">
+              Comparte Nuestro <span class="gradient-text">Menú</span>
+            </h2>
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed px-4">
+              Escanea el código QR y comparte nuestro menú con familiares y amigos
+            </p>
+          </div>
+          <div class="flex justify-center">
+            <QRGenerator />
           </div>
         </div>
       </section>
@@ -198,14 +206,14 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue';
-import { Facebook, Instagram, Twitter, MapPin, Phone, Clock, ChevronUp } from 'lucide-vue-next';
+import { Facebook, Instagram, Twitter, MapPin, Phone, Clock, ChevronUp, QrCode } from 'lucide-vue-next';
 import type { MenuCategory, RestaurantConfig } from './types';
 
 // Components
 import Navigation from './components/Navigation.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import MenuSection from './components/MenuSection.vue';
-import ContactForm from './components/ContactForm.vue';
+import ContactSection from './components/ContactSection.vue';
 import QRGenerator from './components/QRGenerator.vue';
 import CartSidebar from './components/CartSidebar.vue';
 import WhatsAppButton from './components/WhatsAppButton.vue';
